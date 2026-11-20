@@ -1,14 +1,6 @@
 # Neovim Docker Development Environment
 
-Build and run a Docker container with a development environment using Neovim as the editor.
-
-## Overview
-
-You already have a Docker image with all necessary software installed. You map the directory containing your project's source code into the container when starting it, creating a development environment for that project.
-
-This is similar to how dev containers work in VS Code.
-
-Now, you want to use Neovim as your editor.
+This is my opinionated, simple and flexible approach for wrapping dev environment inside docker container and having VS Code + Dev Containers experience, but using Neovim.
 
 ## Common Approach
 
@@ -26,45 +18,28 @@ In practice, you typically have Neovim installed on your host environment with a
 - **Store the Neovim data directory (with all installed plugins) in a named Docker volume.**  
   This persists plugins across container restarts without reinstalling them each time. Use a separate named volume instead of binding to the host filesystem, as the plugins cache contains OS-specific binaries that are not portable between host and container.
 
-## Terminal on macOS
-
-Neovim can be configured to copy text into the system clipboard when yanking. However, this would be the container's clipboard, not the host's.
-
-Ideally, a terminal can copy selected text using the default Command-C shortcut, but this doesn't work in the default macOS Terminal app.
-
-Use iTerm2 instead, as it allows the following:
-
-- **Copy text:**  
-  Hold Option and highlight text with the mouse cursor, then press Command+C.  
-  (iTerm2 will put the highlighted text into the system clipboard.)
-
-- **Paste text:**  
-  Activate Insert mode in Neovim, then press Command+V.  
-  (iTerm2 will type the text from the system clipboard.)
-
-- **Open web links in the default host browser:**  
-  Hold Command and click the link.
-
 ## Usage
+
+```sh
+neodev/go.sh ~/my-project-dir
+```
+
+It will perform two things:
 
 1. **Build the Docker image with Neovim:**
 
    ```sh
-   ~/Projects/neodev/build.sh rust-sandbox
+   neodev/build.sh ~/my-project-dir
    ```
+
+   First it will build base docker image using `~/my-project-dir/.devcontainer/Dockerfile`.  
+   Then it will build Neovim docker image using `neodev/Dockerfile` on top of base image.
 
    Rebuild each time changes are made to the project's or Neovim's Dockerfile.
 
 2. **Run the Docker container with the image:**
 
    ```sh
-   ~/Projects/neodev/run.sh rust-sandbox
+   neodev/run.sh ~/my-project-dir
    ```
 
-   Use this as the main way to start the dev environment for a project.
-
-Or just use combination of build and run:
-
-  ```sh
-  ~/Projects/neodev/go.sh rust-sandbox
-  ```

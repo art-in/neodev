@@ -2,9 +2,9 @@
 
 # Builds docker image with neovim on top of project's dev image.
 #
-# Usage: docker-build.sh <project-dir>
+# Usage: build.sh <project-dir>
 #
-# E.g.:  docker-build.sh ~/Projects/rust-sandbox
+# E.g.:  build.sh ~/Projects/rust-sandbox
 #
 # This script will create two images:
 # - "<project-name>-base": base image build from project's .devcontainer/Dockerfile

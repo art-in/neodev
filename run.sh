@@ -2,9 +2,9 @@
 
 # Runs docker container with neovim.
 #
-# Usage: docker-run.sh <project-name>
+# Usage: run.sh <project-dir>
 #
-# E.g.:  docker-run.sh rust-sandbox
+# E.g.:  run.sh ~/Projects/rust-sandbox
 #
 # This script will run neovim in docker container, and also mount project
 # directory and some other stuff from host filesystem into container.
