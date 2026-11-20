@@ -66,4 +66,3 @@ CMD=(
 
 "${CMD[@]}"
 
-# --mount type=bind,source=$HOME_DIR/.config/github-copilot,target=/root/.config/github-copilot \
