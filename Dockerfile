@@ -31,9 +31,3 @@ ENV COLORTERM=truecolor
 # which doesn't support history navigation with up-down arrows, cleaning with Command+L, etc.
 ENV SHELL=/bin/bash
 
-# # API keys for CodeCompanion plugin
-# ENV GEMINI_API_KEY=AIzaSyBKn0XZbvtvicnFpHTdEQJP-ix6xtPgGC8
-#
-# # install nodejs for Copilot.vim auth/setup process
-# RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-# RUN apt install -y nodejs
